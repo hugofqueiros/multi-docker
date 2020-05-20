@@ -21,3 +21,15 @@ after_success:
     - docker push hugofqueiros/multi-nginx
     - docker push hugofqueiros/multi-server
     - docker push hugofqueiros/multi-worker
+deploy:
+    edge: true
+    provider: elasticbeanstalk
+    region: us-east-1
+    app: "multi-docker"
+    env: "MultiDocker-env"
+    bucket_name: "elasticbeanstalk-us-east-1-358304561282"
+    bucket_path: "docker-multi"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
